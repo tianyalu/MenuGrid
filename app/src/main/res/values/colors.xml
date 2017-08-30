@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- GridView color -->
+    <color name="grid_item_bg">#ffe8ecef</color>
+    <color name="line">#ffd3dde6</color>
+    <color name="common_text_color">#ff333333</color>
+
+    <!-- guide dot color -->
+    <color name="guide_dot_normal">#ffd0ccc7</color>
+    <color name="guide_dot_select">#ff004169</color>
+
+</resources>
