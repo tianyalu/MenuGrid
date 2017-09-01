@@ -2,6 +2,8 @@ package com.sty.menu.grid.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
 
 /**
@@ -24,7 +26,13 @@ public class CustomGridView extends GridView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int heightSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
-
+        //int heightSpec = MeasureSpec.makeMeasureSpec(900, MeasureSpec.AT_MOST);
+//        for(int i = 0; i < getChildCount(); i++) {
+//            View child = getChildAt(i);
+//            child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+//            Log.i("Tag", "child count:-->" + getChildCount() + "\nchild Tag:-->" + child.getTag().toString() +
+//                    "\nchild:-->" + child.toString() + "" + "\nchild height:-->" + child.getMeasuredHeight());
+//        }
         super.onMeasure(widthMeasureSpec, heightSpec);
     }
 }

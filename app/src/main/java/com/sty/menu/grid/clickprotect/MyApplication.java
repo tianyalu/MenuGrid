@@ -19,6 +19,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        com.wanjian.sak.LayoutManager.init(this); //使用UI调试插件
 
         MyApplication.mApp = this;
         handler = new Handler();

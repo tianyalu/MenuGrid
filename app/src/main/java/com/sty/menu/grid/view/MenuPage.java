@@ -118,7 +118,7 @@ public class MenuPage extends LinearLayout {
         CustomGridView gridView = (CustomGridView) layout.findViewById(R.id.vp_gv);
         gridView.setNumColumns(columns);
 
-        GridViewAdapter adapter = new GridViewAdapter(context, itemList, pageIndex, maxItemNumPerPage);
+        GridViewAdapter adapter = new GridViewAdapter(context, itemList, pageIndex, maxItemNumPerPage, columns);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

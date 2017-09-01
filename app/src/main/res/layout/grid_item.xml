@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grid_item_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
@@ -8,6 +9,10 @@
     android:paddingBottom="@dimen/space_size_normal_large"
     android:paddingTop="@dimen/space_size_normal_large">
 
+    <RelativeLayout
+        android:id="@+id/grid_item_inner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/iv_item"
         android:layout_width="@dimen/grid_item"
@@ -27,4 +32,5 @@
         android:maxLines="1"
         android:textColor="@color/common_text_color"
         android:textSize="@dimen/font_size_small"/>
+    </RelativeLayout>
 </RelativeLayout>
