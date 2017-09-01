@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MenuGrid</string>
+
+    <string name="header_title">Title</string>
 </resources>

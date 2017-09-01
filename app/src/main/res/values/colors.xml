@@ -13,4 +13,6 @@
     <color name="guide_dot_normal">#ffd0ccc7</color>
     <color name="guide_dot_select">#ff004169</color>
 
+    <color name="white">#FFFFFF</color>
+
 </resources>

@@ -28,6 +28,8 @@ import java.util.List;
  */
 
 public class GridViewAdapter extends BaseAdapter {
+
+    private static final String TAG = GridViewAdapter.class.getSimpleName();
     private List<GridItem> itemList;
     private Context context;
     private int pageIndex;
@@ -106,19 +108,20 @@ public class GridViewAdapter extends BaseAdapter {
             Log.i("Tag", "-----------------------------");
             Log.i("Tag", "grid item inner height:-->" + gridItemInnerHeight + "\norig grid item height:-->" + gridItemOrigHeight);
 
-            int gridRow = maxItemNumPerPage % columns == 0 ? maxItemNumPerPage/columns : maxItemNumPerPage/columns + 1;
+            int gridRow = maxItemNumPerPage % columns == 0 ? maxItemNumPerPage / columns : maxItemNumPerPage / columns + 1;
             int screenHeight = ScreenMetricUtils.getRealScreenPixel(ActivityStack.getInstance().top()).y;
             int statusBarHeight = ScreenMetricUtils.getStatusBarHeight(ActivityStack.getInstance().top());
-            int customTitleBarHeight = 0; //78;
-            int gridItemHeight = (screenHeight-statusBarHeight) / gridRow;
-            int newMargin = (screenHeight - (padding + gridItemInnerHeight) * gridRow - statusBarHeight - customTitleBarHeight) / gridRow / 2;
-            Log.i("Tag", "graid raw:-->" + gridRow + "\nscreen height:-->" + screenHeight + "\nnewMargin:-->" + newMargin);
+            int customTitleBarHeight = getCustomTitleBarHeight();
+            int gridItemHeight = (screenHeight - statusBarHeight - customTitleBarHeight) / gridRow;
+            int newMargin = (gridItemHeight - padding - gridItemInnerHeight) / 2;
+            Log.i("Tag", "graid raw:-->" + gridRow + "\nscreen height:-->" + screenHeight + "\nnewMargin:-->" + newMargin +
+                    "\ncustomTitleBarHeight:-->" + customTitleBarHeight);
 
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     gridItemHeight);
             lp.setMargins(0, newMargin, 0, newMargin);
             //注意：这里是根据父控件的布局类型来设置子控件的各种参数
-            RelativeLayout rl = convertView.findViewById(R.id.grid_item_inner_layout);
+            RelativeLayout rl =  convertView.findViewById(R.id.grid_item_inner_layout);
             rl.setLayoutParams(lp);
 
             CustomGridView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, gridItemHeight);
@@ -156,6 +159,23 @@ public class GridViewAdapter extends BaseAdapter {
         RelativeLayout rl = v.findViewById(R.id.grid_item_layout);
         rl.measure(0, 0);
         return rl.getMeasuredHeight();
+    }
+
+    /**
+     * 获得自定义标题栏的高度
+     * @return
+     */
+    private int getCustomTitleBarHeight(){
+        int customTitleBarHeight = 0;
+        try {
+            View v = LayoutInflater.from(context).inflate(R.layout.header_layout, null);
+            RelativeLayout rl = v.findViewById(R.id.layout_header);
+            rl.measure(0, 0);
+            customTitleBarHeight = rl.getMeasuredHeight();
+        } catch (Exception e) {
+            Log.i(TAG, "", e);
+        }
+        return customTitleBarHeight;
     }
 
     private Integer getViewIcon(int position){
