@@ -21,7 +21,7 @@ public class AutoRecoveredValueSetter<T> {
     }
 
     protected void setRecoverTo(T value){
-        this.recoveredTo = recoveredTo;
+        this.recoveredTo = value;
     }
 
     protected void setTimeoutMs(long timeoutMs){

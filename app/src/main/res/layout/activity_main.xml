@@ -7,8 +7,7 @@
     android:orientation="vertical"
     tools:context="com.sty.menu.grid.MainActivity">
 
-    <include layout="@layout/header_layout"
-        android:id="@+id/header_layout_id"/>
+    <include layout="@layout/header_layout" />
 
     <LinearLayout
         android:id="@+id/ll_gallery"

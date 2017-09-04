@@ -2,8 +2,6 @@ package com.sty.menu.grid.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.sty.menu.grid.MainActivity;
 import com.sty.menu.grid.R;
-import com.sty.menu.grid.clickprotect.MyApplication;
 import com.sty.menu.grid.util.ActivityStack;
 import com.sty.menu.grid.util.ScreenMetricUtils;
 
@@ -94,7 +90,6 @@ public class GridViewAdapter extends BaseAdapter {
         return position;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
@@ -121,7 +116,7 @@ public class GridViewAdapter extends BaseAdapter {
                     gridItemHeight);
             lp.setMargins(0, newMargin, 0, newMargin);
             //注意：这里是根据父控件的布局类型来设置子控件的各种参数
-            RelativeLayout rl =  convertView.findViewById(R.id.grid_item_inner_layout);
+            RelativeLayout rl =  (RelativeLayout)convertView.findViewById(R.id.grid_item_inner_layout);
             rl.setLayoutParams(lp);
 
             CustomGridView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, gridItemHeight);
@@ -145,7 +140,7 @@ public class GridViewAdapter extends BaseAdapter {
      * @return
      */
     private int getGridItemInnerLayoutHeight(View v){
-        RelativeLayout rl = v.findViewById(R.id.grid_item_inner_layout);
+        RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.grid_item_inner_layout);
         rl.measure(0, 0);
         return rl.getMeasuredHeight();
     }
@@ -156,7 +151,7 @@ public class GridViewAdapter extends BaseAdapter {
      * @return
      */
     private int getOrigGridItemLayoutHeight(View v){
-        RelativeLayout rl = v.findViewById(R.id.grid_item_layout);
+        RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.grid_item_layout);
         rl.measure(0, 0);
         return rl.getMeasuredHeight();
     }
@@ -169,9 +164,10 @@ public class GridViewAdapter extends BaseAdapter {
         int customTitleBarHeight = 0;
         try {
             View v = LayoutInflater.from(context).inflate(R.layout.header_layout, null);
-            RelativeLayout rl = v.findViewById(R.id.layout_header);
+            RelativeLayout rl = (RelativeLayout)v.findViewById(R.id.layout_header);
             rl.measure(0, 0);
             customTitleBarHeight = rl.getMeasuredHeight();
+            //customTitleBarHeight = rl.getMeasuredHeightAndState();
         } catch (Exception e) {
             Log.i(TAG, "", e);
         }

@@ -7,12 +7,17 @@
     <dimen name="space_size_normal_large">15dp</dimen>
     <dimen name="space_vertical_small">8dp</dimen>
     <dimen name="grid_item">26dp</dimen>
+    <dimen name="space_height_larger">45dp</dimen>
 
     <!-- left and right space -->
     <dimen name="space_left_and_right_small">5dp</dimen>
+    <dimen name="space_left_and_right_normal_small">10dp</dimen>
+    <dimen name="space_left_and_right">15dp</dimen>
 
     <!-- new font size -->
     <dimen name="font_size_small">17sp</dimen>
+    <dimen name="font_size_large">23sp</dimen>
+    <dimen name="font_size_larger">25sp</dimen>
 
     <dimen name="progress_circle_radius">34dp</dimen>
 </resources>

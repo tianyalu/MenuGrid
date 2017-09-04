@@ -3,11 +3,9 @@ package com.sty.menu.grid;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,13 +15,14 @@ import com.sty.menu.grid.view.MenuPage;
 
 import java.lang.ref.WeakReference;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private MenuPage menuPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
 
@@ -37,7 +36,12 @@ public class MainActivity extends Activity {
         LinearLayout ll = (LinearLayout)findViewById(R.id.activity_main);
         ll.measure(0, 0);
         int height = ll.getMeasuredHeight();
-        Log.i("Tag", "total height:-->" + height);
+
+        RelativeLayout rl = (RelativeLayout) findViewById(R.id.layout_header);
+        rl.measure(0, 0);
+        int headerHeight = rl.getMeasuredHeight();
+
+        Log.i("Tag", "total height:-->" + height + "\nheader height:-->" + headerHeight + "----------------");
     }
 
     protected void initViews(){
@@ -47,21 +51,21 @@ public class MainActivity extends Activity {
 
         menuPage = createMenu();
         mLayout.addView(menuPage, params);
+
     }
 
     private MenuPage createMenu(){
         Context context = MainActivity.this;
-        MenuPage.Builder builder = new MenuPage.Builder(context, 10, 5)
-                .addMenuItem("消费", R.drawable.app_sale, null)
-                .addMenuItem("消费", R.drawable.app_sale, null)
-                .addMenuItem("消费", R.drawable.app_sale, null)
-                .addMenuItem("消费", R.drawable.app_sale, null)
-                .addMenuItem("消费", R.drawable.app_sale, null)
-                .addMenuItem("管理", R.drawable.app_manage, null)
-                .addMenuItem("管理", R.drawable.app_manage, null)
-                .addMenuItem("管理", R.drawable.app_manage, null)
-                .addMenuItem("管理", R.drawable.app_manage, null)
-                .addMenuItem("管理", R.drawable.app_manage, null);
+        MenuPage.Builder builder = new MenuPage.Builder(context, 9, 3)
+                .addMenuItem("消费", R.drawable.app_sale, SubActivity.class)
+                .addMenuItem("消费", R.drawable.app_sale, SubActivity.class)
+                .addMenuItem("消费", R.drawable.app_sale, SubActivity.class)
+                .addMenuItem("消费", R.drawable.app_sale, SubActivity.class)
+                .addMenuItem("消费", R.drawable.app_sale, SubActivity.class)
+                .addMenuItem("管理", R.drawable.app_manage, SubActivity.class)
+                .addMenuItem("管理", R.drawable.app_manage, SubActivity.class)
+                .addMenuItem("管理", R.drawable.app_manage, SubActivity.class)
+                .addMenuItem("管理", R.drawable.app_manage, SubActivity.class);
         return builder.create();
     }
 }

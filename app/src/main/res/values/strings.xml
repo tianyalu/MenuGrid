@@ -2,4 +2,6 @@
     <string name="app_name">MenuGrid</string>
 
     <string name="header_title">Title</string>
+
+    <string name="image_desc"> </string>
 </resources>
